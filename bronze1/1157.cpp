@@ -1,21 +1,43 @@
 #include <iostream>
-#include <algorithm>
 #include <string>
 using namespace std;
 
 int main(void)
 {
-    size_t  idx = 0;
-    int     cnt[26];
-    string str;
-    string  lower = "abcdefghijklmnopqrstuvwxyz";
-    string  upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	int     cnt[26];
+	string  str;
+	int     biggest = 0;
+	int     dup = 0;
 
-    bzero(cnt, 26);
-    cin>>str;
-    while (str[idx])
-    {
-        if (str[idx] == lower)
+	for(size_t i = 0; i < 26; i++)
+	   cnt[i] = 0;
+	cin>>str;
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (str[i] >= 'a' && str[i] <= 'z')
+			cnt[(int)str[i] - 'a']++;
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			cnt[(int)str[i] - 'A']++;
+	}
+	for(size_t i = 0; i < 26; i++)
+	{
+		if (cnt[i] > biggest)
+			biggest = cnt[i];
+	}
 
-    }
+	for(size_t i = 0; i < 26; i++)
+	{
+		if (cnt[i] == biggest)
+			dup++;
+	}
+	if (dup == 1)
+	{
+		for(size_t i = 0; i < 26; i++)
+		{
+			if (cnt[i] == biggest)
+				cout<<(char)(i + 'A');
+		}
+	}
+	else
+		cout<<'?';
 }
