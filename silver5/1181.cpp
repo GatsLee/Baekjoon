@@ -10,10 +10,7 @@ bool cmp(const string a, const string b)
 		return (a.length() < b.length());
 	else
 	{
-		if (a.compare(b) < 0)
-			return (true);
-		else
-			return (false);
+		return (a < b);
 	}
 }
 
@@ -25,23 +22,13 @@ int main(void)
 	vector <string>v;
 
 	cin>>cnt;
-	cin>>tmp;
-	v.push_back(tmp);
-	for (int i = 1; i < cnt;i++)
+	for (int i = 0; i < cnt;i++)
 	{
 		cin>>tmp;
-		flag = 0;
-		for (int j = 0; j < i; j++)
-		{
-			if (tmp.compare(v[j]) == 0)
-				flag = 1;
-		}
-		if (flag == 0)
+		if (find(v.begin(), v.end(), tmp) == v.end())
 			v.push_back(tmp);
 	}
 	sort(v.begin(), v.end(), cmp);
 	for (int i = 0; i < v.size(); i++)
-	{
 		cout<<v[i]<<'\n';
-	}
 }
