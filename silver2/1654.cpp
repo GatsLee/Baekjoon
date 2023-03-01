@@ -2,8 +2,6 @@
 #include <vector>
 using namespace std;
 
-
-
 int main(void)
 {
     int K, N, tmp;
@@ -15,5 +13,4 @@ int main(void)
         cin>>tmp;
         v.push_back(tmp);
     }
-    
 }
