@@ -1,5 +1,5 @@
 #include <iostream>
-#include <queue>
+#include <deque>
 #include <string>
 using namespace std;
 
@@ -7,25 +7,40 @@ int main(void)
 {
     int OPS_CNT, num;
     string ops;
-    queue <int>q;
+    deque <int>q;
 
     cin>>OPS_CNT;
     while (OPS_CNT--)
     {
         cin>>ops;
-        if (ops == "push")
+        if (ops == "push_front")
         {
             cin>>num;
-            q.push(num);
+            q.push_front(num);
         }
-        else if (ops == "pop")
+		else if (ops == "push_back")
+		{
+            cin>>num;
+            q.push_back(num);
+		}
+        else if (ops == "pop_front")
         {
 			if (q.empty())
 				cout<<-1<<'\n';
 			else
 			{
 				cout<<q.front()<<'\n';
-				q.pop();
+				q.pop_front();
+			}
+        }
+        else if (ops == "pop_back")
+        {
+			if (q.empty())
+				cout<<-1<<'\n';
+			else
+			{
+				cout<<q.back()<<'\n';
+				q.pop_back();
 			}
         }
 		else if (ops == "size")
