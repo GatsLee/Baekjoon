@@ -5,7 +5,7 @@ using namespace std;
 
 int main(void)
 {
-    unsigned int K, N, tmp, ret;
+    unsigned int K, N, tmp, ret = 0;
     unsigned int mid, low, hig, cnt = 0;
 
     cin>>K>>N;
@@ -24,6 +24,8 @@ int main(void)
         mid = (low + hig) / 2;
         for (int i = 0; i < v.size(); i++)
             cnt += (v[i] / mid);
+        //to find the maximum len, 
+        //u have to keep searching that after you reach the number of lines
         if (cnt >= N)
         {
             low = mid + 1;
