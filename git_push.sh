@@ -9,5 +9,5 @@ if [ ${answer} == "yes" -o ${answer} == "y" ]; then
     git commit -m "joon-lee"
     git push --set-upstream origin main
 else
-    echo "Well then, prepare for you next battle!"
+    echo "Well then, prepare for your next battle!"
 fi
