@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <stack>
+#include <queue>
 using namespace std;
 
 int M, N, K;
@@ -10,37 +10,50 @@ int y_move[4] = {1,-1,0,0};
 
 void    find_cabbage(void)
 {
-    int x, y;
+	int nx, ny, x, y;
+	int total = 0;
 
-    cin>>M>>N>>K;
-    vector < vector <int> > map(N, vector<int>(M, 0));
-    stack <pair <int, int> > S;
-    while (K--)
-    {
-        cin>>x>>y;
-        map[y][x] = 1;
-    }
-    x = 0, y = 0;
-    S.push(make_pair(y,x));
-    while (!S.empty())
-    {
-        for (int i = 0; i < 4; i++) {
-            y = S.top().first + y_move[i];
-            x = S.top().second + x_move[i];
-            if (y < 0 || y > N || x < 0 || x > M)
-                continue ;
-            if (map[y][x] == 1)
-                S.push(make_pair(y, x));
-        }
-        
-    }
-}
+	cin>>M>>N>>K;
+	vector < vector <int> > map(N, vector<int>(M, 0));
+	queue <pair <int, int> > Q;
+	for (int i = 0; i < K; i++)
+	{
+		cin>>x>>y;
+		map[y][x] = 1;
+	}
+	for (int i= 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			if (map[i][j] == 1) {
+				Q.push(make_pair(i, j));
+				map[i][j] = 0;
+				while (!Q.empty()) {
+					y = Q.front().first;
+					x = Q.front().second;
+					for (int m = 0; m < 4; m++) {
+						ny = y + y_move[m];
+						nx = x + x_move[m];
+						if (ny < 0 || ny >= N || nx < 0 || nx >= M)
+							continue ;
+						if (map[ny][nx] == 1)
+						{
+							Q.push(make_pair(ny, nx));
+							map[ny][nx] = 0;
+						}
+					}
+					Q.pop();
+				}
+				total++;
+			}
+		}
+	}
+	cout<<total<<'\n';
+	}
 
 int main(void)
 {
-    int CASE;
+	int CASE;
 
-    cin>>CASE;
-    while (CASE--)
-        find_cabbage();
+	cin>>CASE;
+	while (CASE--)
+		find_cabbage();
 }
