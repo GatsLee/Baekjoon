@@ -1,28 +1,28 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int main(void)
 {
-	int N, from, to;
-	int	max_cnt = 0, cnt;
-	int	lastest = 0, fastest = 214743647;
+	int N, from, to, mid;
 
 	cin>>N;
-	vector < pair <int, int> >time;
-	vector <int>start;
+	vector < pair <int, int> > tt(N);
 	for (int i = 0; i < N; i++) {
 		cin>>from>>to;
-		if (to >= lastest)
-			lastest = to;
-		if (from <= fastest)
-			fastest = from;
-		time.push_back(make_pair(from, to));
-		start.push_back(from);
+		tt[i] = make_pair(to, from);
 	}
-	sort(time.begin(), time.end());
-	for (int i = 0; i < lastest)
+	sort(tt.begin(), tt.end());
+	int time = tt[0].first;
+	int ret = 1;
+	for (int j = 1; j < N; j++)
 	{
-
+		if (time <= tt[j].second)
+		{
+			ret++;
+			time = tt[j].first;
+		}
 	}
+	cout<<ret;
 }
