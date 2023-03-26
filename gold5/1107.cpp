@@ -29,24 +29,17 @@ int main(void) {
 		if (flag == false)
 			whole_num.push_back(j);
 	}
-	pair<int, int> P = make_pair(0, 1000000);
-	start = 0;
-	end = whole_num.size() - 1;
-	while (start <= end) {
-		mid = (start + end) / 2;
-		if (P.second >= abs(whole_num[mid] - T))
-			P = make_pair(whole_num[mid], abs(whole_num[mid] - T));
-		if (whole_num[mid] > T)
-			end = mid - 1;
-		else if (whole_num[mid] < T)
-			start = mid + 1;
-		else {
-			P = make_pair(T, 0);
-			break;
-		}
+	if (whole_num.size() == 0) {
+		cout<< abs(T- 100);
+		return (0);
 	}
-	if (abs(T-100) >= P.second + to_string(P.first).size())
-		cout << P.second + to_string(P.first).size();
+	int min_n = 1000006;
+	for (int i = 0; i < whole_num.size(); i++) {
+		if (min_n >= to_string(whole_num[i]).size() + abs(whole_num[i] - T))
+			min_n = to_string(whole_num[i]).size() + abs(whole_num[i] - T);
+	}
+	if (abs(T-100) >= min_n)
+		cout << min_n;
 	else
 		cout << abs(T-100);
 }
