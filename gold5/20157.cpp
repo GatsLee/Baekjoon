@@ -22,15 +22,16 @@ int main(void) {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    unordered_map <double, int>FREQ_1_3;
-    unordered_map <double, int>FREQ_2_4;
-    vector <double>INC;
+    unordered_map <pair<int, int>, int>FREQ_1_3;
+    unordered_map <pair<int, int>, int>FREQ_2_4;
+    unordered_map <int>FREQ_line;
+    vector <pair<int, int> >INC;
     cin>>N;
     for (int i = 0; i < N; i++) {
         cin>>x>>y;
         int sign = 1;
         if (x == 0) {
-            if (FREQ_1_3[3000000] == 0)
+            if (FREQ_1_3[mak] == 0)
                 INC.push_back(3000000);
             if (FREQ_1_3[-3000000] == 0)
                 INC.push_back(-3000000);
@@ -56,7 +57,7 @@ int main(void) {
                 sign = -1;
             int tmp = find_GCD(abs(x), abs(y));
             double inc = abs((y / tmp) / (x / tmp));
-            
+
             if ((x > 0 && y > 0) || (x < 0 && y < 0)) {
                 if (FREQ_1_3[inc * sign] == 0)
                     INC.push_back(inc * sign);
