@@ -4,25 +4,24 @@ using namespace std;
 
 int N;
 
-int	x_mv[4] = {0,0,3,-3};
-int	y_mv[4] = {3,-3,0,0};
-
-
-void    put_space (vector < vector <char> > &V, int x, int y, int size) {
-
-	if (x >= N || y >= N || x < 0 || y < 0)
+void    put_space (vector < vector <char> > &V, int x, int y) {
+	if (x > N || y > N)
 		return ;
-	if (x == size / 3 && y == size / 3) {
-		for (int i = y; i < y + size / 3; i++)
-			for (int j = x; j < x + size / 3; j++)
+	if (x % N == 3 && y % N == 3) {
+		for (int i = y; i < y + N / 3; i++)
+			for (int j = x; j < x + N / 3; j++)
 				V[i][j] = ' ';
-		for (int i = 0; i < 4; i++)
-			put_space(V, x + x_mv[i], y + y_mv[i], size / 3);
+	}
+	else if (x == N / 3 && y == N / 3) {
+		for (int i = y; i < y + N / 3; i++)
+			for (int j = x; j < x + N / 3; j++)
+				V[i][j] = ' ';
 	}
 	else {
 		V[y + 1][x + 1] = ' ';
-		for (int i = 0; i < 4; i++)
-			put_space(V, x + x_mv[i], y + y_mv[i], size);
+		put_space(V, x + 3, y);
+		put_space(V, x, y+3);
+		put_space(V, x+3, y+3);
 	}
 }
 
@@ -34,7 +33,7 @@ int main(void) {
 	cin>>N;
 	vector < vector <char> > V(N, vector <char>(N, '*'));
 	// put_space recursively
-	put_space(V, 0, 0, N);
+	put_space(V, 0, 0);
 	//print_stars
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
