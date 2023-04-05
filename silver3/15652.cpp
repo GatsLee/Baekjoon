@@ -5,18 +5,17 @@ int N, M;
 int arr[10];
 int isused[10];
 
-void    solve(int n) {
+void    solve(int n, int start) {
     if (n == M) {
-        for (int i = 0; i < M;i++)
+        for (int i = 0; i < M; i++)
             cout<<arr[i]<<' ';
         cout<<'\n';
         return ;
     }
-    for (int i = 1; i <= N; i++) {
+    for (int i = start; i <= N; i++) {
         if (isused[i] == 0) {
             arr[n] = i;
-            isused[i] = 1;
-            solve(n+1);
+            solve(n+1, start);
             isused[i] = 0;
         }
     }
@@ -29,5 +28,5 @@ int main(void) {
     cin.tie(0);
 
     cin>>N>>M;
-    solve(0);
+    solve(0, 1);
 }

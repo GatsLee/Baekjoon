@@ -7,7 +7,7 @@ int isused[10];
 
 void    solve(int n) {
     if (n == M) {
-        for (int i = 0; i < M;i++)
+        for (int i = 0; i < M; i++)
             cout<<arr[i]<<' ';
         cout<<'\n';
         return ;
@@ -15,7 +15,6 @@ void    solve(int n) {
     for (int i = 1; i <= N; i++) {
         if (isused[i] == 0) {
             arr[n] = i;
-            isused[i] = 1;
             solve(n+1);
             isused[i] = 0;
         }
