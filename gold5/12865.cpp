@@ -26,19 +26,5 @@ int main(void) {
 				max_val[num1] = num2;
 		}
 	}
-	sort(V.begin(), V.end());
-	for (int i = 1; i <= N; i++) {
-		if (max_val[i] != 0) {
-			for (int j = 0; j < V.size(); j++) {
-				if (i + V[j].first <= M
-					&& max_val[i + V[j].first] <= max_val[i] + V[j].second)
-					max_val[i + V[j].first] = max_val[i] + V[j].second;
-			}
-		}
-	}
-	for (int i = 1; i <= M; i++) {
-		if (max <= max_val[i])
-			max = max_val[i];
-	}
-	cout<<max;
+
 }
