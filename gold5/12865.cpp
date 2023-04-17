@@ -19,12 +19,7 @@ int main(void) {
 	for (int i = 0; i < N; i++) {
 		cin>>num1>>num2;
 		V.push_back(make_pair(num1, num2));
-		if (max_val[num1] == 0)
-			max_val[num1] = num2;
-		else {
-			if (max_val[num1] <= num2)
-				max_val[num1] = num2;
-		}
 	}
+	vector < vector <int> > solve(N+1, vector <int>(M+1));
 
 }
