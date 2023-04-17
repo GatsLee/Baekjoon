@@ -1,25 +1,25 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
-int N, M;
-int max_val[100001];
-int	visited[100][100];
+int N, K;
+int w[101] = { 0 }, v[101] = { 0 };
+int solve[101][100001] = { 0 };
 
 int main(void) {
 
-	int num1, num2;
-	int max = 0;
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
 
-	cin>>N>>M;
-	vector < pair <int, int> > V;
-	for (int i = 0; i < N; i++) {
-		cin>>num1>>num2;
-		V.push_back(make_pair(num1, num2));
+	cin>>N>>K;
+	for (int i = 1; i <= N; i++)
+		cin>>w[i]>>v[i];
+	for (int i = 1; i <= N; i++) {
+		for (int j = 1; j <= K; j++) {
+			if (j >= w[i])
+				solve[i][j] = max(solve[i-1][j], v[i] + solve[i - 1][j - w[i]]);
+			else
+				solve[i][j] = solve[i-1][j];
+		}
 	}
-	vector < vector <int> > solve(N+1, vector <int>(M+1));
-
+	cout<< solve[N][K];
 }
